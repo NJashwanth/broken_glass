@@ -134,7 +134,8 @@ Offset _intersect(Offset a, Offset b, int edge, Rect r) {
   final dy = b.dy - a.dy;
   switch (edge) {
     case 0:
-      return Offset(r.left, a.dy + dy * (r.left - a.dx) / (dx == 0 ? 1e-9 : dx));
+      return Offset(
+          r.left, a.dy + dy * (r.left - a.dx) / (dx == 0 ? 1e-9 : dx));
     case 1:
       return Offset(
           r.right, a.dy + dy * (r.right - a.dx) / (dx == 0 ? 1e-9 : dx));

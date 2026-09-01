@@ -73,30 +73,34 @@ class _DemoPageState extends State<DemoPage> {
         ],
       ),
       body: SafeArea(
-        child: LayoutBuilder(builder: (context, constraints) {
-          final wide = constraints.maxWidth > 820;
-          final stage = _Stage(
-            glass: _glass,
-            pattern: _patterns[_pattern]!,
-            style: _styles[_style]!,
-            scatter: _scatter,
-            spread: _spread,
-            gravity: _gravity,
-          );
-          final controls = _controls();
-          return wide
-              ? Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(child: stage),
-                    SizedBox(width: 320, child: controls),
-                  ],
-                )
-              : ListView(children: [
-                  SizedBox(height: 420, child: stage),
-                  controls,
-                ]);
-        }),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final wide = constraints.maxWidth > 820;
+            final stage = _Stage(
+              glass: _glass,
+              pattern: _patterns[_pattern]!,
+              style: _styles[_style]!,
+              scatter: _scatter,
+              spread: _spread,
+              gravity: _gravity,
+            );
+            final controls = _controls();
+            return wide
+                ? Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(child: stage),
+                      SizedBox(width: 320, child: controls),
+                    ],
+                  )
+                : ListView(
+                    children: [
+                      SizedBox(height: 420, child: stage),
+                      controls,
+                    ],
+                  );
+          },
+        ),
       ),
     );
   }
@@ -107,8 +111,10 @@ class _DemoPageState extends State<DemoPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Text('Tap the card to break it where you touch.',
-              style: TextStyle(color: Colors.white60)),
+          const Text(
+            'Tap the card to break it where you touch.',
+            style: TextStyle(color: Colors.white60),
+          ),
           const SizedBox(height: 20),
           _Section('Pattern'),
           _Choices(
@@ -244,8 +250,10 @@ class _Card extends StatelessWidget {
                 color: Colors.white24,
                 borderRadius: BorderRadius.circular(999),
               ),
-              child: const Text('tap to break',
-                  style: TextStyle(color: Colors.white, fontSize: 13)),
+              child: const Text(
+                'tap to break',
+                style: TextStyle(color: Colors.white, fontSize: 13),
+              ),
             ),
           ],
         ),
@@ -260,14 +268,17 @@ class _Section extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(bottom: 8),
-        child: Text(label.toUpperCase(),
-            style: const TextStyle(
-                fontSize: 11,
-                letterSpacing: 1.4,
-                color: Colors.white38,
-                fontWeight: FontWeight.w700)),
-      );
+    padding: const EdgeInsets.only(bottom: 8),
+    child: Text(
+      label.toUpperCase(),
+      style: const TextStyle(
+        fontSize: 11,
+        letterSpacing: 1.4,
+        color: Colors.white38,
+        fontWeight: FontWeight.w700,
+      ),
+    ),
+  );
 }
 
 class _Choices extends StatelessWidget {
@@ -316,8 +327,10 @@ class _Slider extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('$label  ${value.round()}',
-            style: const TextStyle(color: Colors.white70, fontSize: 13)),
+        Text(
+          '$label  ${value.round()}',
+          style: const TextStyle(color: Colors.white70, fontSize: 13),
+        ),
         Slider(value: value, max: max, onChanged: onChanged),
       ],
     );

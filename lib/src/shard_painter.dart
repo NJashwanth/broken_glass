@@ -100,8 +100,7 @@ class ShardPainter extends CustomPainter {
       if (style.tint.a > 0) {
         canvas.drawRect(
           dst,
-          Paint()
-            ..color = style.tint.withValues(alpha: style.tint.a * opacity),
+          Paint()..color = style.tint.withValues(alpha: style.tint.a * opacity),
         );
       }
       canvas.restore();
@@ -130,8 +129,8 @@ class ShardPainter extends CustomPainter {
 
     final angle = shard.tilt * math.pi * 2;
     final dir = Offset(math.cos(angle), math.sin(angle));
-    final flicker =
-        0.55 + 0.45 * math.sin((t * (1.4 + shard.tilt) + shard.tilt) * math.pi * 2);
+    final flicker = 0.55 +
+        0.45 * math.sin((t * (1.4 + shard.tilt) + shard.tilt) * math.pi * 2);
     final strength =
         (style.glare * (0.35 + 1.15 * t) * flicker * opacity).clamp(0.0, 1.0);
     if (strength < 0.01) return;
@@ -158,8 +157,8 @@ class ShardPainter extends CustomPainter {
 
   /// The fracture line while the pieces touch, becoming a lit bevel once they
   /// separate.
-  void _paintEdges(
-      Canvas canvas, GlassShard shard, double t, double crackIn, double opacity) {
+  void _paintEdges(Canvas canvas, GlassShard shard, double t, double crackIn,
+      double opacity) {
     final together = (1 - t).clamp(0.0, 1.0);
 
     if (style.crackWidth > 0) {

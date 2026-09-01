@@ -134,7 +134,8 @@ class ShatterPattern {
         ring == 0 ? impact : grid[ring - 1][ray % rays];
     Offset outer(int ring, int ray) => grid[ring][ray % rays];
 
-    final used = List<List<bool>>.generate(rings, (_) => List.filled(rays, false));
+    final used =
+        List<List<bool>>.generate(rings, (_) => List.filled(rays, false));
     final shards = <GlassShard>[];
 
     for (var i = 0; i < rings; i++) {

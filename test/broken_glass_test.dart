@@ -8,8 +8,8 @@ void main() {
     const impact = Offset(150, 100);
 
     test('tiles the whole surface with no gaps or overlap', () {
-      final shards = const ShatterPattern()
-          .generate(size: size, impact: impact, seed: 7);
+      final shards =
+          const ShatterPattern().generate(size: size, impact: impact, seed: 7);
       final covered = shards.fold<double>(0, (sum, s) => sum + s.area);
       // Shards partition the rect, so their areas must add up to it.
       expect(covered, closeTo(size.width * size.height, 1.0));
@@ -36,8 +36,8 @@ void main() {
     });
 
     test('breaks finest at the point of impact', () {
-      final shards = const ShatterPattern()
-          .generate(size: size, impact: impact, seed: 11);
+      final shards =
+          const ShatterPattern().generate(size: size, impact: impact, seed: 11);
       final near = shards.where((s) => s.distance < 0.25);
       final far = shards.where((s) => s.distance > 0.6);
       double avgArea(Iterable<GlassShard> s) =>
@@ -64,7 +64,8 @@ void main() {
 
     testWidgets('renders and lays out its child while intact', (tester) async {
       await tester.pumpWidget(wrap(
-        const BrokenGlass(child: Text('hello', textDirection: TextDirection.ltr)),
+        const BrokenGlass(
+            child: Text('hello', textDirection: TextDirection.ltr)),
       ));
       expect(find.text('hello'), findsOneWidget);
       expect(tester.getSize(find.byType(BrokenGlass)), const Size(200, 200));
@@ -121,8 +122,8 @@ void main() {
         child: Container(color: const Color(0xFF000000)),
       )));
 
-      await tester.tapAt(tester.getTopLeft(find.byType(BrokenGlass)) +
-          const Offset(20, 20));
+      await tester.tapAt(
+          tester.getTopLeft(find.byType(BrokenGlass)) + const Offset(20, 20));
       await tester.pumpAndSettle();
 
       final painter = tester

@@ -1,6 +1,6 @@
 name: broken_glass
 description: "Break any Flutter widget like a pane of glass — radial fractures, tumbling shards and lit edges."
-version: 0.1.0
+version: 1.0.0
 homepage: https://github.com/NJashwanth/broken_glass
 repository: https://github.com/NJashwanth/broken_glass
 issue_tracker: https://github.com/NJashwanth/broken_glass/issues

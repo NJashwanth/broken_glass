@@ -162,7 +162,8 @@ class _BrokenGlassState extends State<BrokenGlass>
       widget.controller?.addListener(_onControllerChanged);
     }
     _animation.duration = widget.duration;
-    _animation.reverseDuration = widget.reverseDuration ?? widget.duration * 0.7;
+    _animation.reverseDuration =
+        widget.reverseDuration ?? widget.duration * 0.7;
 
     if (widget.controller == null && widget.broken != oldWidget.broken) {
       if (widget.broken) {
@@ -304,8 +305,8 @@ class _BrokenGlassState extends State<BrokenGlass>
                       shards: shards,
                       image: snapshot,
                       impact: _impactPoint,
-                      progress: widget.curve.transform(
-                          _animation.value.clamp(0.0, 1.0)),
+                      progress: widget.curve
+                          .transform(_animation.value.clamp(0.0, 1.0)),
                       style: widget.style,
                       spread: widget.spread,
                       gravity: widget.gravity,
