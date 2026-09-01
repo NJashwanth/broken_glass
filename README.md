@@ -2,15 +2,15 @@
 
 Make any Flutter widget look like a pane of glass — then break it.
 
+<p align="center">
+  <img src="doc/demo.gif" alt="A card breaking into glass shards and reassembling" width="400">
+</p>
+
 `BrokenGlass` snapshots its child the instant it breaks, carves the snapshot
 into shards along a radial fracture pattern, and tumbles the pieces away from
 the point of impact. Every shard clips the *same* snapshot, so the artwork stays
 continuous across the cracks: it reads as the widget itself breaking, not as a
-crack decal laid on top.
-
-| Cracked | Shattering | Crack in place |
-| --- | --- | --- |
-| ![cracked](doc/cracked.png) | ![breaking](doc/breaking.png) | ![spider web](doc/spider_web.png) |
+crack decal laid on top. `restore()` plays the whole thing backwards.
 
 ## Usage
 
@@ -44,10 +44,22 @@ glass.shatter(alignment: Alignment.topLeft); // or shatter(at: localOffset)
 glass.restore();                             // plays the break backwards
 ```
 
-### Cracked, but not falling apart
+## Cracked, but not falling apart
 
 `scatter: false` stops at damaged glass — the pieces stay put. Good as a
-"broken screen" overlay.
+"broken screen" overlay. `ShatterPattern.chunky` breaks into a few big panes
+instead of a spray of fragments.
+
+<table>
+  <tr>
+    <td width="50%"><img src="doc/crack_in_place.gif" alt="Spider-web cracks left in place" width="100%"></td>
+    <td width="50%"><img src="doc/chunky.gif" alt="Glass breaking into a few large panes" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><code>scatter: false</code> · <code>ShatterPattern.spiderWeb</code></td>
+    <td align="center"><code>ShatterPattern.chunky</code> · <code>GlassStyle.frost</code></td>
+  </tr>
+</table>
 
 ```dart
 BrokenGlass(
@@ -119,8 +131,8 @@ BrokenGlass(
   underneath if the glass stays broken.
 - Snapshotting needs Impeller, Skia or CanvasKit. It does not work on Flutter
   web's legacy HTML renderer.
-- Widgets inside the child that handle taps win the gesture over `breakOnTap`;
-  use a `BrokenGlassController` for interactive children.
+- Widgets inside the child that handle taps themselves win the gesture over
+  `breakOnTap`; use a `BrokenGlassController` for interactive children.
 - Cost scales with shard count (`rays × rings`). The defaults produce ~50
   shards, which is comfortable; `ShatterPattern.fine` produces ~170.
 
@@ -130,5 +142,9 @@ BrokenGlass(
 cd example && flutter run
 ```
 
-A live playground: tap the card to break it where you touch, and switch pattern,
-style, spread and gravity while it is broken.
+A live playground — the one in the GIFs above. Tap the card to break it where
+you touch, and switch pattern, style, spread and gravity while it is broken.
+
+## License
+
+MIT

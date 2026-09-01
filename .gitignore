@@ -29,3 +29,7 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 /build/
 /coverage/
+
+# Raw screen recordings used to produce the README GIFs (too large for git).
+example/assets/*.mov
+example/assets/*.mp4
